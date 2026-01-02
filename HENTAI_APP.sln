@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Video2FrameImage", "Video2FrameImage\Video2FrameImage.csproj", "{E13652BD-0A42-4FBD-8DFD-D435094B8A67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageChoiceAndResize", "ImageChoice2Resize\ImageChoiceAndResize.csproj", "{72F413C9-53ED-4E19-83C0-F0FB3BB185CB}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HENTAI_APP_SETUP", "HENTAI_APP_SETUP\HENTAI_APP_SETUP.vdproj", "{5C9A6208-087F-3B98-9DAC-80F92B725447}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E13652BD-0A42-4FBD-8DFD-D435094B8A67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E13652BD-0A42-4FBD-8DFD-D435094B8A67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E13652BD-0A42-4FBD-8DFD-D435094B8A67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E13652BD-0A42-4FBD-8DFD-D435094B8A67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72F413C9-53ED-4E19-83C0-F0FB3BB185CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72F413C9-53ED-4E19-83C0-F0FB3BB185CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72F413C9-53ED-4E19-83C0-F0FB3BB185CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72F413C9-53ED-4E19-83C0-F0FB3BB185CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C9A6208-087F-3B98-9DAC-80F92B725447}.Debug|Any CPU.ActiveCfg = Debug
+		{5C9A6208-087F-3B98-9DAC-80F92B725447}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E251C5C-DE17-4D1A-993E-A368A296A661}
+	EndGlobalSection
+EndGlobal
