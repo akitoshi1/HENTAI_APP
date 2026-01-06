@@ -771,11 +771,18 @@ namespace Civitai_Love
         /// <param name="e"></param>
         private void btnSend_Packer_Click(object sender, EventArgs e)
         {
-
+            
             try
             {
+                string outPutPath = this.GetOutputPath();
+                var psi = new ProcessStartInfo
+                {
+                    FileName = this.GetNextAppPath(),
+                    Arguments = $"\"{outPutPath}\""
+                };
+
                 //次のアプリを開く
-                Process.Start(this.GetNextAppPath(), this.GetOutputPath());
+                Process.Start(psi);
 
                 if (chkCloseMe.Checked)
                 {
