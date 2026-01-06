@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
@@ -17,6 +18,44 @@ namespace Civitai_Love
     /// </summary>
     public static class FFmpegIO
     {
+
+
+        /// <summary>
+        /// FFmpegのバージョン取得
+        /// </summary>
+        /// <returns></returns>
+        public static string GetFFmpegVersion()
+        {
+            string output = string.Empty;
+            try
+            {
+                var process = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "ffmpeg",
+                        Arguments = "-version",
+                        RedirectStandardOutput = true,
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    }
+                };
+
+                process.Start();
+                output = process.StandardOutput.ReadToEnd();
+                process.WaitForExit();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                MessageBox.Show("FFmpeg is not installed." + Environment .NewLine + "Please install FFmpeg.", "FFMpeg Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return output.Split('\n').FirstOrDefault();
+        }
+
+
+
         /// <summary>
         /// 動画情報の取得
         /// </summary>

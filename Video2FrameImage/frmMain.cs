@@ -275,6 +275,17 @@ namespace Civitai_Love
                 // イベント追加
                 this.MouseWheel += frmMain_MouseWheel;
 
+                // ffMpegの存在チェック
+                if(FFmpegIO.GetFFmpegVersion() == string .Empty )
+                {
+                    //FFmpegが未インストール
+                    this.lbl_PleaseDropDownVideo.Text = "FFmpeg is not installed.  Please install FFmpeg.";
+                    this.lbl_PleaseDropDownVideo2.Text = "🫷 😵‍💫 🫸";
+                    this.Text = "FFmpeg is not installed.  Please install FFmpeg.";
+                    
+                    return;
+                }
+
                 // ビデオファイルの設定
                 this.SetVideoFile();
 
