@@ -76,13 +76,13 @@
         "Entry"
         {
         "MsmKey" = "8:_2F5F6DA0FFF43EB6E5ACFD6648682732"
-        "OwnerKey" = "8:_887593DFA7664267891D6DE46757ABC2"
+        "OwnerKey" = "8:_443300F15D52467EB53A0E440FE913E3"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_2F5F6DA0FFF43EB6E5ACFD6648682732"
-        "OwnerKey" = "8:_443300F15D52467EB53A0E440FE913E3"
+        "OwnerKey" = "8:_887593DFA7664267891D6DE46757ABC2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -220,7 +220,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2F5F6DA0FFF43EB6E5ACFD6648682732"
+        "OwnerKey" = "8:_887593DFA7664267891D6DE46757ABC2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -286,7 +286,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_887593DFA7664267891D6DE46757ABC2"
+        "OwnerKey" = "8:_2F5F6DA0FFF43EB6E5ACFD6648682732"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -307,6 +307,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -323,6 +331,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -769,15 +785,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HENTAI_APP"
-        "ProductCode" = "8:{A352A6FD-35AF-498B-AEC5-D0DE10E6AA8D}"
-        "PackageCode" = "8:{CC588654-D64A-4C81-A2A1-286F0B5D7FA6}"
+        "ProductCode" = "8:{3C4F0E9D-AE49-4BA7-94C2-240879925B1A}"
+        "PackageCode" = "8:{42E33FE7-0B25-4C02-A051-0B04A75BE95B}"
         "UpgradeCode" = "8:{7BFA21AA-07E6-4A18-9982-44FA33F74CDE}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.2.0"
         "Manufacturer" = "8:Hentai_App"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1347,7 +1363,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_443300F15D52467EB53A0E440FE913E3"
             {
-            "SourcePath" = "8:..\\Video2FrameImage\\obj\\Release\\Video2FrameImage.exe"
+            "SourcePath" = "8:..\\Video2FrameImage\\obj\\Debug\\Video2FrameImage.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4AF1A28493F48788B7341DDC1D56409"
@@ -1375,7 +1391,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_887593DFA7664267891D6DE46757ABC2"
             {
-            "SourcePath" = "8:..\\ImageChoice2Resize\\obj\\Release\\ImageChoice2Resize.exe"
+            "SourcePath" = "8:..\\ImageChoice2Resize\\obj\\Debug\\ImageChoice2Resize.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4AF1A28493F48788B7341DDC1D56409"

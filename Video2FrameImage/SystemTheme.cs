@@ -72,21 +72,23 @@ namespace Civitai_Love
         {
             try
             {
-                if (parent.Name.Substring(0, 3) != "btn")
+                if (parent.Name.Length >= 3)
                 {
-                    if (parent.Name.Substring(0, 3) != "txt")
+                    if (parent.Name.Substring(0, 3) != "btn")
                     {
-                        parent.BackColor = theme.BackColor;
-                        parent.ForeColor = theme.ForeColor;
+                        if (parent.Name.Substring(0, 3) != "txt")
+                        {
+                            parent.BackColor = theme.BackColor;
+                            parent.ForeColor = theme.ForeColor;
+                        }
+                    }
+                    else
+                    {
+                        parent.BackColor = SystemColors.Control;
+                        parent.ForeColor = SystemColors.ControlText;
+
                     }
                 }
-                else
-                {
-                    parent.BackColor = SystemColors.Control;
-                    parent.ForeColor = SystemColors.ControlText;
-
-                }
-
                 foreach (Control c in parent.Controls)
                 {
                     ApplyTheme(c, theme);

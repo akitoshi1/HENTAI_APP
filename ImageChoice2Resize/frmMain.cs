@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO; 
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Drawing.Imaging;
-
-
-using System.IO; 
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ImageChoiceAndResize
 {
@@ -212,6 +211,11 @@ namespace ImageChoiceAndResize
             return "";
         }
 
+        /// <summary>
+        /// 左クリック中
+        /// </summary>
+        public bool blnLeftClick = false;
+
         #endregion 変数
 
         #region イベント
@@ -301,6 +305,14 @@ namespace ImageChoiceAndResize
 
             try
             {
+                // 左クリック中ならなにもしない
+                if (this.blnLeftClick == true)
+                {
+                    //一応ここで通知も解除しておく
+                    this.blnLeftClick = false;
+                    return;
+                }
+
                 // システム引数にセット
                 this.ARGS = (string[])e.Data.GetData(DataFormats.FileDrop);
 
@@ -416,16 +428,57 @@ namespace ImageChoiceAndResize
             {
                 // リムーブフォルダに移動
                 this.RemoveImage();
+                return;
             }
             if (e.Button == MouseButtons.Left)
             {
+                // 左クリック中をアプリに通知
+                this.blnLeftClick = true;
+
+                // 今のインデックス
+                int nowIndex = Convert.ToInt32(this.lblFileIndex.Text);
+                var result = this.listImageFiles.Where(x => x.index == nowIndex);
+                // 別のアプリにドラッグドロップ
+                foreach (ImageFile ifile in result)
+                {
+                    System.IO.FileInfo fi = new FileInfo(ifile.fullName);
+                    if (fi.Exists)
+                    {
+                        string[] files = { (string)fi.FullName };
+                        DataObject dataObj = new DataObject(DataFormats.FileDrop, files);
+                        DragDropEffects dde = this.pictureBox.DoDragDrop(dataObj, DragDropEffects.Copy);
+                    }
+                }
+
+                // 左クリック中の通知を解除
+                this.blnLeftClick = false ;
+
+
                 //前の画像表示
                 this.SetBackImage();
+                return;
             }
             if (e.Button == MouseButtons.Right)
             {
                 // 次の画像表示
                 this.SetNextImage();
+                return;
+            }
+
+
+        }
+
+
+        /// <summary>
+        /// タグテキストのクリック
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void lblShowInfo3_Click(object sender, EventArgs e)
+        {
+            if (this.lblShowInfo3.Text != string.Empty)
+            {
+                Clipboard.SetText(this.lblShowInfo3.Text);
             }
         }
 
@@ -444,13 +497,14 @@ namespace ImageChoiceAndResize
                 // 画面初期化
                 this.lblShowInfo.Text = string.Empty;
                 this.lblShowInfo2.Text = string.Empty;
+                this.lblShowInfo3.Text = string.Empty;
                 this.lblFileIndex.Text = string.Empty;
                 this.lblFileName.Text = string.Empty;
                 this.lblImageWidth.Text = string.Empty;
                 this.lblImageHeight.Text = string.Empty;
 
                 // ボタンツールチップ
-                ToolTip toolTip = new ToolTip();
+                System.Windows.Forms.ToolTip toolTip = new System.Windows.Forms.ToolTip();
                 toolTip.SetToolTip(this.btnResize, "Setting [Resize and Package]");
                 toolTip.SetToolTip(this.btnBack, "Back Image(Wheel Up)");
                 toolTip.SetToolTip(this.btnRemove, "Remove Image(Wheel Click)");
@@ -458,6 +512,7 @@ namespace ImageChoiceAndResize
                 toolTip.SetToolTip(this.btnRelord, "Relord");
                 toolTip.SetToolTip(this.btnResizePack, "GO [Resize and Package]");
                 toolTip.SetToolTip(this.btnCancel, "Cancel Back");
+                toolTip.SetToolTip(this.lblShowInfo3, "Left click to copy tag text");
 
                 // ボタンの有効化
                 this.SetBtnEnabled(false);
@@ -504,7 +559,6 @@ namespace ImageChoiceAndResize
                 // フォーム初期化
                 this.InitForm();
 
-
                 // 引数
                 foreach (string arg in this.ARGS)
                 {
@@ -525,7 +579,7 @@ namespace ImageChoiceAndResize
                 else
                 {
                     this.Text = "Please drop the image Folder.";
-                    MessageBox.Show("Please drop the image Folder.");
+                    //MessageBox.Show("Please drop the image Folder.");
                     this.lordPath = string.Empty;
 
                     //ドロップダウン誘導ラベルを表示
@@ -687,6 +741,19 @@ namespace ImageChoiceAndResize
                     
                 }
                 this.lblShowInfo2.Text = "[" + this.lblFileIndex.Text + "/" + this.ImageFilesCount() + "] " + this.RemoveFileCount();
+
+                //タグテキストが存在するなら、ラベル3に表示
+                string tagTextFileName = Path.ChangeExtension(ifile.fullName, ".txt");
+                if(File.Exists(tagTextFileName))
+                {
+                    this.lblShowInfo3.Text = File.ReadAllText(tagTextFileName, Encoding.UTF8);
+                    
+                }
+                else
+                {
+                    this.lblShowInfo3.Text = string.Empty;
+                    
+                }
             }
             catch (Exception err)
             {
@@ -886,6 +953,8 @@ namespace ImageChoiceAndResize
                 //インフォメーションの表示
                 this.lblShowInfo.Text = string.Empty;
                 this.lblShowInfo2.Text = string.Empty; 
+                this.lblShowInfo3.Text = string.Empty;
+
 
                 //先頭数値
                 if (sumPortrait + sumSquare + sumLandscape > 100)
@@ -916,7 +985,7 @@ namespace ImageChoiceAndResize
         /// <summary>
         /// リサイズ項目のセット
         /// </summary>
-        private void SetResize(int point, CheckBox chkBox, TextBox txtWidth, TextBox txtCount)
+        private void SetResize(int point, CheckBox chkBox, System.Windows.Forms.TextBox txtWidth, System.Windows.Forms.TextBox txtCount)
         {
             try
             {
@@ -1598,7 +1667,9 @@ namespace ImageChoiceAndResize
 
                 this.lblShowInfo.Text = $"Please Wait ...Now {percent:F2} %";
                 this.lblShowInfo2.Text = "[" + setValue.ToString() + "/" + maximum.ToString() + "]"   ;
+                this.lblShowInfo3.Text = string.Empty;
 
+                Application.DoEvents(); //UI更新  
                 this.Refresh();
             }
             catch (Exception err)
@@ -1613,5 +1684,6 @@ namespace ImageChoiceAndResize
         {
 
         }
+
     }
 }

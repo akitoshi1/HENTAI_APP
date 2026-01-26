@@ -134,7 +134,7 @@ namespace Civitai_Love
         /// </summary>
         public enum Transpose
         {
-            R1,L2
+            R1, L2
         }
 
         #endregion 列挙・定数
@@ -162,6 +162,22 @@ namespace Civitai_Love
         /// システム設定情報
         /// </summary>
         public SystemSetting systemSetting = new SystemSetting();
+
+
+        /// <summary>
+        /// 左クリック中
+        /// </summary>
+        public bool blnLeftClick = false;
+
+        /// <summary>
+        /// 画像ファイルのパスを返す
+        /// </summary>
+        /// <param name="se"></param>
+        /// <returns></returns>
+        private string GetImageFilePath(StartEnd se)
+        {
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), se.ToString() + ".png");
+        }
 
 
         /// <summary>
@@ -259,10 +275,10 @@ namespace Civitai_Love
 
         #region イベント
 
-            /// <summary>
-            /// コンストラクタ
-            /// </summary>
-            /// <param name="args"></param>
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="args"></param>
         public frmMain(string[] args)
         {
             try
@@ -276,13 +292,13 @@ namespace Civitai_Love
                 this.MouseWheel += frmMain_MouseWheel;
 
                 // ffMpegの存在チェック
-                if(FFmpegIO.GetFFmpegVersion() == string .Empty )
+                if (FFmpegIO.GetFFmpegVersion() == string.Empty)
                 {
                     //FFmpegが未インストール
                     this.lbl_PleaseDropDownVideo.Text = "FFmpeg is not installed.  Please install FFmpeg.";
                     this.lbl_PleaseDropDownVideo2.Text = "🫷 😵‍💫 🫸";
                     this.Text = "FFmpeg is not installed.  Please install FFmpeg.";
-                    
+
                     return;
                 }
 
@@ -323,10 +339,10 @@ namespace Civitai_Love
 
                 // ボタンツールチップ
                 ToolTip toolTip = new ToolTip();
-                
-                toolTip.SetToolTip(this.btnSystemOutput , "Select Flame Image Output Folder");  //出力先選択
-                toolTip.SetToolTip(this.btnSystemSettingClose , "System Setting End");          //システム設定終了
-                toolTip.SetToolTip(this.btnTEST_FFMPEG , "Video 2 FrameImage Files");           //フレーム画像の出力
+
+                toolTip.SetToolTip(this.btnSystemOutput, "Select Flame Image Output Folder");  //出力先選択
+                toolTip.SetToolTip(this.btnSystemSettingClose, "System Setting End");          //システム設定終了
+                toolTip.SetToolTip(this.btnTEST_FFMPEG, "Video 2 FrameImage Files");           //フレーム画像の出力
                 toolTip.SetToolTip(this.btnSend_Packer, "Go 2 Next Work!!");                    //次の処理へ
             }
             catch (Exception err)
@@ -370,6 +386,13 @@ namespace Civitai_Love
             this.lordPath = string.Empty;
             try
             {
+                // 左クリック中ならなにもしない
+                if (this.blnLeftClick == true)
+                {
+                    //一応ここで通知も解除しておく
+                    this.blnLeftClick = false;
+                    return;
+                }
 
                 // システム引数にセット
                 this.ARGS = (string[])e.Data.GetData(DataFormats.FileDrop);
@@ -470,6 +493,58 @@ namespace Civitai_Love
                 this.progressBar.Visible = false;
             }
         }
+
+
+        /// <summary>
+        /// スタート画像のドラッグ処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBoxStart_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 左クリック中をアプリに通知
+                this.blnLeftClick = true;
+
+                System.IO.FileInfo fi = new FileInfo(this.GetImageFilePath(StartEnd.Start));
+                if (fi.Exists)
+                {
+                    string[] files = { (string)fi.FullName };
+                    DataObject dataObj = new DataObject(DataFormats.FileDrop, files);
+                    DragDropEffects dde = this.pictureBoxStart.DoDragDrop(dataObj, DragDropEffects.Copy);
+                }
+
+                // 左クリック中の通知を解除
+                this.blnLeftClick = false;
+            }
+        }
+
+        /// <summary>
+        /// エンド画像のドラッグ処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pictureBoxEnd_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                // 左クリック中をアプリに通知
+                this.blnLeftClick = true;
+
+                System.IO.FileInfo fi = new FileInfo(this.GetImageFilePath(StartEnd.End));
+                if (fi.Exists)
+                {
+                    string[] files = { (string)fi.FullName };
+                    DataObject dataObj = new DataObject(DataFormats.FileDrop, files);
+                    DragDropEffects dde = this.pictureBoxEnd.DoDragDrop(dataObj, DragDropEffects.Copy);
+                }
+
+                // 左クリック中の通知を解除
+                this.blnLeftClick = false;
+            }
+        }
+
 
         /// <summary>
         /// マウスホイールイベント
@@ -623,7 +698,7 @@ namespace Civitai_Love
                 int valueI = Convert.ToInt16(this.cmbFrameInterval.Text);
                 int valutTB = this.trackBar_TrimStart.Value - valueI;
 
-                if(valutTB  > this.trackBar_TrimStart.Minimum)
+                if (valutTB > this.trackBar_TrimStart.Minimum)
                 {
                     this.trackBar_TrimStart.Value = valutTB;
                 }
@@ -771,7 +846,7 @@ namespace Civitai_Love
         /// <param name="e"></param>
         private void btnSend_Packer_Click(object sender, EventArgs e)
         {
-            
+
             try
             {
                 string outPutPath = this.GetOutputPath();
@@ -826,6 +901,7 @@ namespace Civitai_Love
             this.pnlSystemSeting.Visible = true;
             this.pnlSystemSeting.Focus();
 
+            this.pnlsplitContainer1.Visible = false;
             this.pnlEditVideo.Visible = false;
 
         }
@@ -861,6 +937,7 @@ namespace Civitai_Love
             {
                 this.pnlSystemSeting.Visible = false;
                 this.pnlEditVideo.Visible = true;
+                this.pnlsplitContainer1.Visible = true;
 
                 //システム設定の更新
                 this.systemSetting.OutputDirectory = this.txtSystemOutput.Text;
@@ -871,7 +948,7 @@ namespace Civitai_Love
                 this.Width = 1030;
                 this.Height = 750;
 
-                
+
 
             }
             catch (Exception err)
@@ -968,6 +1045,14 @@ namespace Civitai_Love
             this.lordPath = string.Empty;
             try
             {
+                // プログレスバーを表示
+                this.progressBar.Visible = true;
+                Application.DoEvents();
+                this.Refresh();
+
+
+
+
                 // 読込パスを取得
                 foreach (string args in this.ARGS)
                 {
@@ -998,7 +1083,10 @@ namespace Civitai_Love
 
 
                     // 最初の video stream を取得
-                    this.ShowProgressBar(1, 3);
+                    //this.ShowProgressBar(1, 3);
+                    Application.DoEvents();
+                    this.Refresh();
+
                     var videoStream = root
                         .GetProperty("streams")
                         .EnumerateArray()
@@ -1021,12 +1109,16 @@ namespace Civitai_Love
                     }
 
                     // format 情報
-                    this.ShowProgressBar(2, 3);
+                    //this.ShowProgressBar(2, 3);
                     this.videoFile.format = root.GetProperty("format");
+                    Application.DoEvents();
+                    this.Refresh();
 
                     // ビデオ編集パネルの表示
-                    this.ShowProgressBar(3, 3);
+                    //this.ShowProgressBar(3, 3);
                     this.Show_pnlEditVideo();
+                    Application.DoEvents();
+                    this.Refresh();
 
                     // 既に出力済みかチェック
                     if (Directory.Exists(this.GetOutputPath()))
@@ -1074,7 +1166,7 @@ namespace Civitai_Love
         {
             string targetTime = string.Empty;
             PictureBox pb = new PictureBox();
-            string trans = string.Empty; 
+            string trans = string.Empty;
             try
             {
                 if (se == StartEnd.Start)
@@ -1089,9 +1181,9 @@ namespace Civitai_Love
                 }
 
                 // 回転設定
-                if(this.chkIsTranspose.Checked )
+                if (this.chkIsTranspose.Checked)
                 {
-                    if(this.rdoTranspose1.Checked )
+                    if (this.rdoTranspose1.Checked)
                     {
                         trans = "1";
                     }
@@ -1249,7 +1341,7 @@ namespace Civitai_Love
                 string[] fileNameSplit = newest.Name.Split('_');
                 cutOutCount = Convert.ToInt32(fileNameSplit[1]);
 
-                this.videoFile.intoutPutCount = cutOutCount + 1;  
+                this.videoFile.intoutPutCount = cutOutCount + 1;
 
             }
             catch (Exception err)
@@ -1279,6 +1371,7 @@ namespace Civitai_Love
                 this.pnlEditVideo.Left = 12;
                 this.pnlEditVideo.Visible = true;
                 this.pnlEditVideo.Focus();
+                this.pnlsplitContainer1.Visible = true;
 
                 // フレーム総数の取得
                 this.videoFile.intTotalFrameCount = FFmpegIO.GetTotalFrames(this.videoFile.fullName);
@@ -1379,6 +1472,7 @@ namespace Civitai_Love
                 this.lblShowInfo.Text = $"Please Wait ...Now {percent:F2} %";
                 this.lblShowInfo2.Text = "[" + setValue.ToString() + "/" + maximum.ToString() + "]";
 
+                Application.DoEvents();
                 this.Refresh();
             }
             catch (Exception err)
@@ -1394,5 +1488,6 @@ namespace Civitai_Love
 
 
         #endregion FFMPEG
+
     }
 }

@@ -84,6 +84,7 @@ namespace ImageChoiceAndResize
             this.lblFolder = new System.Windows.Forms.Label();
             this.lblpleaseDorpDown = new System.Windows.Forms.Label();
             this.pnlLogo = new System.Windows.Forms.Panel();
+            this.lblShowInfo3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.pnlResize.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -99,7 +100,7 @@ namespace ImageChoiceAndResize
             this.pictureBox.ErrorImage = null;
             this.pictureBox.Location = new System.Drawing.Point(11, 83);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(675, 569);
+            this.pictureBox.Size = new System.Drawing.Size(675, 558);
             this.pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
@@ -736,12 +737,26 @@ namespace ImageChoiceAndResize
             this.pnlLogo.Size = new System.Drawing.Size(674, 126);
             this.pnlLogo.TabIndex = 14;
             // 
+            // lblShowInfo3
+            // 
+            this.lblShowInfo3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowInfo3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowInfo3.Location = new System.Drawing.Point(12, 644);
+            this.lblShowInfo3.Name = "lblShowInfo3";
+            this.lblShowInfo3.Size = new System.Drawing.Size(674, 19);
+            this.lblShowInfo3.TabIndex = 15;
+            this.lblShowInfo3.Text = "info:";
+            this.lblShowInfo3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblShowInfo3.Click += new System.EventHandler(this.lblShowInfo3_Click);
+            // 
             // frmMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 664);
+            this.Controls.Add(this.lblShowInfo3);
             this.Controls.Add(this.lblpleaseDorpDown);
             this.Controls.Add(this.lblFolder);
             this.Controls.Add(this.progressBar);
@@ -834,6 +849,7 @@ namespace ImageChoiceAndResize
         private System.Windows.Forms.Label lblFolder;
         private System.Windows.Forms.Label lblpleaseDorpDown;
         private System.Windows.Forms.Panel pnlLogo;
+        private System.Windows.Forms.Label lblShowInfo3;
     }
 }
 
