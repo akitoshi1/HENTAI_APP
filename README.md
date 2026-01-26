@@ -30,4 +30,4 @@
 
 ## 使い方
 こちらの記事を参照
-http:---
+https://civitai.com/articles/24674/create-models-from-videos-optimized-software-has-been-released
