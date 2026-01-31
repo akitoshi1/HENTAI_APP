@@ -890,8 +890,8 @@ namespace Civitai_Love
             {
                 this.WindowState = FormWindowState.Normal;
             }
-            this.Width = 700;
-            this.Height = 300;
+            //this.Width = 700;
+            //this.Height = 300;
 
             //システム設定値を表示
             this.txtSystemOutput.Text = this.systemSetting.OutputDirectory;

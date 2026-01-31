@@ -314,6 +314,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -338,6 +346,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -785,15 +801,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HENTAI_APP"
-        "ProductCode" = "8:{3C4F0E9D-AE49-4BA7-94C2-240879925B1A}"
-        "PackageCode" = "8:{42E33FE7-0B25-4C02-A051-0B04A75BE95B}"
+        "ProductCode" = "8:{948FFBEE-9CD7-4068-AEA6-262E3562702D}"
+        "PackageCode" = "8:{D96DA2A7-F70B-4DB1-B9FD-9C3BAD0CCD58}"
         "UpgradeCode" = "8:{7BFA21AA-07E6-4A18-9982-44FA33F74CDE}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.2.0"
+        "ProductVersion" = "8:1.3.0"
         "Manufacturer" = "8:Hentai_App"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1363,7 +1379,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_443300F15D52467EB53A0E440FE913E3"
             {
-            "SourcePath" = "8:..\\Video2FrameImage\\obj\\Debug\\Video2FrameImage.exe"
+            "SourcePath" = "8:..\\Video2FrameImage\\obj\\Release\\Video2FrameImage.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4AF1A28493F48788B7341DDC1D56409"
@@ -1391,7 +1407,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_887593DFA7664267891D6DE46757ABC2"
             {
-            "SourcePath" = "8:..\\ImageChoice2Resize\\obj\\Debug\\ImageChoice2Resize.exe"
+            "SourcePath" = "8:..\\ImageChoice2Resize\\obj\\Release\\ImageChoice2Resize.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4AF1A28493F48788B7341DDC1D56409"

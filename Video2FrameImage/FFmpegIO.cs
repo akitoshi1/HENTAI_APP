@@ -87,6 +87,7 @@ namespace Civitai_Love
                 MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return JsonDocument.Parse(output);
+            
 
         }
 
