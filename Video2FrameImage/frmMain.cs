@@ -7,6 +7,7 @@ using System.Text;
 using System.Text.Json;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using System.Reflection;
 
 namespace Civitai_Love
 {
@@ -114,7 +115,7 @@ namespace Civitai_Love
         /// <summary>
         /// システム情報
         /// </summary>
-        public const string SYSTEM_INFO = "V01_[https://civitai.com/user/suteakasuteakasuteka434]";
+        public string SYSTEM_INFO = "[https://civitai.com/user/suteakasuteakasuteka434]" + Assembly.GetExecutingAssembly().GetName().Version;
 
         /// <summary>
         /// 次のアプリ名

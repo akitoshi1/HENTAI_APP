@@ -103,7 +103,6 @@ namespace Civitai_Love
                 {
                     FileName = "ffprobe",
                     Arguments = $"-v error -select_streams v:0 -count_packets -show_entries stream=nb_read_packets -of csv=p=0  \"{videoPath}\"",
-
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
@@ -156,27 +155,65 @@ namespace Civitai_Love
 
 
                 // FFMPEG コマンド編集
-                var arguments = $"-nostdin -ss {time} -i \"{videoPath}\" -frames:v 1 \"{tempImage}\"";
+                var arguments = $"-nostdin -ss {time} -y -i \"{videoPath}\" -frames:v 1 \"{tempImage}\"";
 
                 // 回転設定があるなら修正
                 if (transpose != string.Empty )
                 {
-                    arguments = $"-nostdin -ss {time} -i \"{videoPath}\" -vf \"transpose={transpose}\" -frames:v 1 \"{tempImage}\"";
+                    arguments = $"-nostdin -ss {time} -y -i \"{videoPath}\" -vf \"transpose={transpose}\" -frames:v 1 \"{tempImage}\"";
                 }
 
-                // FFMPEG プロセス起動
-                using (var process = new Process())
+                //// FFMPEG プロセス起動
+                //using (var process = new Process())
+                //{
+                //    process.StartInfo = new ProcessStartInfo
+                //    {
+                //        FileName = "ffmpeg",
+                //        Arguments = arguments,
+                //        CreateNoWindow = true,
+                //        UseShellExecute = false
+                //    };
+                //    process.Start();
+                //    process.WaitForExit();
+                //}
+
+                var psi = new ProcessStartInfo
                 {
-                    process.StartInfo = new ProcessStartInfo
-                    {
-                        FileName = "ffmpeg",
-                        Arguments = arguments,
-                        CreateNoWindow = true,
-                        UseShellExecute = false,
-                    };
-                    process.Start();
-                    process.WaitForExit();
+                    FileName = "ffmpeg",
+                    Arguments = arguments,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                var process = new Process { StartInfo = psi };
+
+                process.ErrorDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg Error: " + e.Data);
+                };
+
+                process.OutputDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg Output: " + e.Data);
+                };
+
+                process.Start();
+                process.BeginErrorReadLine();
+                process.BeginOutputReadLine();
+                process.WaitForExit();
+
+                if (process.ExitCode != 0)
+                {
+                    //Console.WriteLine($"FFmpeg ERROR (ExitCode={process.ExitCode})");
+                    MessageBox.Show($"FFmpeg ERROR (ExitCode={process.ExitCode})", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return string.Empty;
                 }
+
+
 
                 return tempImage;
 
@@ -217,12 +254,12 @@ namespace Civitai_Love
                 // interval フレームごと → fps / interval
                 double extractFps = fps / interval;
 
-                var arguments = $"-ss {startSec} -to {endSec} -i \"{inputPath}\" " + $"-vf \"fps={extractFps}\" ";
+                var arguments = $"-ss {startSec} -to {endSec} -y -i \"{inputPath}\" " + $"-vf \"fps={extractFps}\" ";
 
                 // 回転設定があるなら修正
                 if (transpose != string.Empty)
                 {
-                    arguments = $"-ss {startSec} -to {endSec} -i \"{inputPath}\" " + $"-vf \"fps={extractFps},transpose={transpose}\" ";                    
+                    arguments = $"-ss {startSec} -to {endSec} -y -i \"{inputPath}\" " + $"-vf \"fps={extractFps},transpose={transpose}\" ";                    
                 }
 
                 // ファイル形式確認
@@ -238,18 +275,55 @@ namespace Civitai_Love
                 }
 
 
-                using (var process = new Process())
+                //using (var process = new Process())
+                //{
+                //    process.StartInfo = new ProcessStartInfo
+                //    {
+                //        FileName = "ffmpeg",
+                //        Arguments = arguments,
+                //        CreateNoWindow = true,
+                //        UseShellExecute = false,
+                //    };
+                //    process.Start();
+                //    process.WaitForExit();
+                //}
+
+                var psi = new ProcessStartInfo
                 {
-                    process.StartInfo = new ProcessStartInfo
-                    {
-                        FileName = "ffmpeg",
-                        Arguments = arguments,
-                        CreateNoWindow = true,
-                        UseShellExecute = false,
-                    };
-                    process.Start();
-                    process.WaitForExit();
+                    FileName = "ffmpeg",
+                    Arguments = arguments,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                var process = new Process { StartInfo = psi };
+
+                process.ErrorDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg Error: " + e.Data);
+                };
+
+                process.OutputDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg Output: " + e.Data);
+                };
+
+                process.Start();
+                process.BeginErrorReadLine();
+                process.BeginOutputReadLine();
+                process.WaitForExit();
+
+                if (process.ExitCode != 0)
+                {
+                    //Console.WriteLine($"FFmpeg ERROR (ExitCode={process.ExitCode})");
+                    MessageBox.Show($"FFmpeg ERROR (ExitCode={process.ExitCode})", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return ;
                 }
+
             }
             catch (Exception err)
             {

@@ -196,7 +196,7 @@ namespace Civitai_Love
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
             this.settingToolStripMenuItem.Text = "Setting";
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
@@ -329,7 +329,7 @@ namespace Civitai_Love
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxStart.Location = new System.Drawing.Point(3, 3);
             this.pictureBoxStart.Name = "pictureBoxStart";
-            this.pictureBoxStart.Size = new System.Drawing.Size(484, 131);
+            this.pictureBoxStart.Size = new System.Drawing.Size(484, 121);
             this.pictureBoxStart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxStart.TabIndex = 7;
             this.pictureBoxStart.TabStop = false;
@@ -339,7 +339,7 @@ namespace Civitai_Love
             // 
             this.trackBar_TrimStart.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar_TrimStart.Location = new System.Drawing.Point(3, 140);
+            this.trackBar_TrimStart.Location = new System.Drawing.Point(3, 130);
             this.trackBar_TrimStart.Minimum = 1;
             this.trackBar_TrimStart.Name = "trackBar_TrimStart";
             this.trackBar_TrimStart.Size = new System.Drawing.Size(498, 45);
@@ -353,7 +353,7 @@ namespace Civitai_Love
             this.lblTrimStartTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTrimStartTime.AutoSize = true;
             this.lblTrimStartTime.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblTrimStartTime.Location = new System.Drawing.Point(387, 186);
+            this.lblTrimStartTime.Location = new System.Drawing.Point(387, 176);
             this.lblTrimStartTime.Name = "lblTrimStartTime";
             this.lblTrimStartTime.Size = new System.Drawing.Size(100, 21);
             this.lblTrimStartTime.TabIndex = 15;
@@ -363,7 +363,7 @@ namespace Civitai_Love
             // 
             this.btnSp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSp.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnSp.Location = new System.Drawing.Point(168, 215);
+            this.btnSp.Location = new System.Drawing.Point(168, 205);
             this.btnSp.Name = "btnSp";
             this.btnSp.Size = new System.Drawing.Size(64, 32);
             this.btnSp.TabIndex = 3;
@@ -376,7 +376,7 @@ namespace Civitai_Love
             this.lblCutStart1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCutStart1.AutoSize = true;
             this.lblCutStart1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblCutStart1.Location = new System.Drawing.Point(10, 187);
+            this.lblCutStart1.Location = new System.Drawing.Point(10, 177);
             this.lblCutStart1.Name = "lblCutStart1";
             this.lblCutStart1.Size = new System.Drawing.Size(93, 21);
             this.lblCutStart1.TabIndex = 11;
@@ -386,7 +386,7 @@ namespace Civitai_Love
             // 
             this.btnSm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSm.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnSm.Location = new System.Drawing.Point(102, 215);
+            this.btnSm.Location = new System.Drawing.Point(102, 205);
             this.btnSm.Name = "btnSm";
             this.btnSm.Size = new System.Drawing.Size(64, 32);
             this.btnSm.TabIndex = 2;
@@ -399,7 +399,7 @@ namespace Civitai_Love
             this.lblCutStart2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCutStart2.AutoSize = true;
             this.lblCutStart2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblCutStart2.Location = new System.Drawing.Point(299, 186);
+            this.lblCutStart2.Location = new System.Drawing.Point(299, 176);
             this.lblCutStart2.Name = "lblCutStart2";
             this.lblCutStart2.Size = new System.Drawing.Size(83, 21);
             this.lblCutStart2.TabIndex = 12;
@@ -409,7 +409,7 @@ namespace Civitai_Love
             // 
             this.txtTrimStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtTrimStart.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtTrimStart.Location = new System.Drawing.Point(102, 183);
+            this.txtTrimStart.Location = new System.Drawing.Point(102, 173);
             this.txtTrimStart.Name = "txtTrimStart";
             this.txtTrimStart.ReadOnly = true;
             this.txtTrimStart.Size = new System.Drawing.Size(130, 29);
@@ -424,7 +424,7 @@ namespace Civitai_Love
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxEnd.Location = new System.Drawing.Point(5, 3);
             this.pictureBoxEnd.Name = "pictureBoxEnd";
-            this.pictureBoxEnd.Size = new System.Drawing.Size(485, 131);
+            this.pictureBoxEnd.Size = new System.Drawing.Size(485, 121);
             this.pictureBoxEnd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxEnd.TabIndex = 8;
             this.pictureBoxEnd.TabStop = false;
@@ -434,7 +434,7 @@ namespace Civitai_Love
             // 
             this.btnEp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEp.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnEp.Location = new System.Drawing.Point(165, 212);
+            this.btnEp.Location = new System.Drawing.Point(165, 202);
             this.btnEp.Name = "btnEp";
             this.btnEp.Size = new System.Drawing.Size(64, 32);
             this.btnEp.TabIndex = 7;
@@ -446,7 +446,7 @@ namespace Civitai_Love
             // 
             this.trackBar_TrimEnd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBar_TrimEnd.Location = new System.Drawing.Point(3, 140);
+            this.trackBar_TrimEnd.Location = new System.Drawing.Point(3, 130);
             this.trackBar_TrimEnd.Minimum = 2;
             this.trackBar_TrimEnd.Name = "trackBar_TrimEnd";
             this.trackBar_TrimEnd.Size = new System.Drawing.Size(457, 45);
@@ -459,7 +459,7 @@ namespace Civitai_Love
             // 
             this.btnEm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnEm.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.btnEm.Location = new System.Drawing.Point(99, 212);
+            this.btnEm.Location = new System.Drawing.Point(99, 202);
             this.btnEm.Name = "btnEm";
             this.btnEm.Size = new System.Drawing.Size(64, 32);
             this.btnEm.TabIndex = 6;
@@ -472,7 +472,7 @@ namespace Civitai_Love
             this.lblTrimEndTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTrimEndTime.AutoSize = true;
             this.lblTrimEndTime.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblTrimEndTime.Location = new System.Drawing.Point(374, 183);
+            this.lblTrimEndTime.Location = new System.Drawing.Point(374, 173);
             this.lblTrimEndTime.Name = "lblTrimEndTime";
             this.lblTrimEndTime.Size = new System.Drawing.Size(100, 21);
             this.lblTrimEndTime.TabIndex = 16;
@@ -482,7 +482,7 @@ namespace Civitai_Love
             // 
             this.txtTrimEnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txtTrimEnd.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtTrimEnd.Location = new System.Drawing.Point(99, 180);
+            this.txtTrimEnd.Location = new System.Drawing.Point(99, 170);
             this.txtTrimEnd.Name = "txtTrimEnd";
             this.txtTrimEnd.ReadOnly = true;
             this.txtTrimEnd.Size = new System.Drawing.Size(130, 29);
@@ -495,7 +495,7 @@ namespace Civitai_Love
             this.lblCutEnd1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCutEnd1.AutoSize = true;
             this.lblCutEnd1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblCutEnd1.Location = new System.Drawing.Point(6, 184);
+            this.lblCutEnd1.Location = new System.Drawing.Point(6, 174);
             this.lblCutEnd1.Name = "lblCutEnd1";
             this.lblCutEnd1.Size = new System.Drawing.Size(87, 21);
             this.lblCutEnd1.TabIndex = 21;
@@ -506,7 +506,7 @@ namespace Civitai_Love
             this.lblCutEnd2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblCutEnd2.AutoSize = true;
             this.lblCutEnd2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lblCutEnd2.Location = new System.Drawing.Point(285, 183);
+            this.lblCutEnd2.Location = new System.Drawing.Point(285, 173);
             this.lblCutEnd2.Name = "lblCutEnd2";
             this.lblCutEnd2.Size = new System.Drawing.Size(77, 21);
             this.lblCutEnd2.TabIndex = 22;
@@ -755,9 +755,9 @@ namespace Civitai_Love
             // lblSystemInfo
             // 
             this.lblSystemInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSystemInfo.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSystemInfo.Font = new System.Drawing.Font("Segoe UI", 6F);
             this.lblSystemInfo.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblSystemInfo.Location = new System.Drawing.Point(617, 514);
+            this.lblSystemInfo.Location = new System.Drawing.Point(617, 520);
             this.lblSystemInfo.Name = "lblSystemInfo";
             this.lblSystemInfo.Size = new System.Drawing.Size(352, 15);
             this.lblSystemInfo.TabIndex = 34;

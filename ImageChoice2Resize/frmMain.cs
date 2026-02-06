@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Reflection;
+
 
 namespace ImageChoiceAndResize
 {
@@ -75,7 +77,8 @@ namespace ImageChoiceAndResize
         /// <summary>
         /// システム情報
         /// </summary>
-        public const string SYSTEM_INFO = "V02_[https://civitai.com/user/suteakasuteakasuteka434]";
+        public string SYSTEM_INFO = "[https://civitai.com/user/suteakasuteakasuteka434]" + Assembly.GetExecutingAssembly().GetName().Version;
+
 
         /// <summary>
         /// 横幅初期値 縦長
