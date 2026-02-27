@@ -355,19 +355,28 @@ namespace Civitai_Love
                 double startSec = startFrame / fps;
                 double endSec = endFrame / fps;
 
-                var arguments =
+                var arguments = string.Empty; 
+
+                // 回転設定があるなら修正
+                if (transpose != string.Empty)
+                {
+                    arguments =
+                    $"-i \"{inputPath}\" " +
+                    $"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',\"transpose={transpose}\",setpts=N/{fps}/TB\" " +
+                    $"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
+                    $"-an " +
+                    $"\"{outputPattern}\"";
+                }
+                else
+                {
+                    arguments =
                     $"-i \"{inputPath}\" " +
                     $"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',setpts=N/{fps}/TB\" " +
                     $"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
                     $"-an " +
                     $"\"{outputPattern}\"";
-
-
-                // 回転設定があるなら修正
-                if (transpose != string.Empty)
-                {
-                    arguments += ",transpose={transpose}";
                 }
+
 
                 //using (var process = new Process())
                 //{

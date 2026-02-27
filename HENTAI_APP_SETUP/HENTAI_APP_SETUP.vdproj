@@ -801,15 +801,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:HENTAI_APP"
-        "ProductCode" = "8:{0FE29447-C750-46D5-B9BD-08A3F0D180B3}"
-        "PackageCode" = "8:{7378579B-6410-4CE7-BDFD-9736387A678C}"
+        "ProductCode" = "8:{5AC54688-6AB8-4C21-93DD-7FDDA7ADF718}"
+        "PackageCode" = "8:{71F7EA07-71A9-4024-B8BF-49E362766665}"
         "UpgradeCode" = "8:{7BFA21AA-07E6-4A18-9982-44FA33F74CDE}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.6.0"
+        "ProductVersion" = "8:1.7.0"
         "Manufacturer" = "8:Hentai_App"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1379,7 +1379,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_443300F15D52467EB53A0E440FE913E3"
             {
-            "SourcePath" = "8:..\\Video2FrameImage\\obj\\Release\\Video2FrameImage.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4AF1A28493F48788B7341DDC1D56409"
@@ -1407,7 +1407,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_887593DFA7664267891D6DE46757ABC2"
             {
-            "SourcePath" = "8:..\\ImageChoice2Resize\\obj\\Release\\ImageChoice2Resize.exe"
+            "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F4AF1A28493F48788B7341DDC1D56409"

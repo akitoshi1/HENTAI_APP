@@ -192,6 +192,7 @@ namespace Civitai_Love
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.optionToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -917,7 +918,7 @@ namespace Civitai_Love
             this.rdoJpg.TabStop = true;
             this.rdoJpg.Text = "JPG";
             this.rdoJpg.UseVisualStyleBackColor = true;
-            this.rdoJpg.Validated += new System.EventHandler(this.rdoJpg_Validated);
+            this.rdoJpg.CheckedChanged += new System.EventHandler(this.rdoJpg_CheckedChanged);
             // 
             // lblSystemInfo
             // 

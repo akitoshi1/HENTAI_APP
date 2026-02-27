@@ -1072,6 +1072,15 @@ namespace Civitai_Love
                 this.rdoMp4.Visible = isVisibleV2V;
                 this.btnV2V_FFMPEG.Visible = isVisibleV2V;
                 this.lblV2V.Visible = isVisibleV2V;
+
+                if(isVisibleV2FI == false )
+                {
+                    this.rdoMp4.Checked = true; 
+                }
+                if(isVisibleV2V == false )
+                {
+                    this.rdoJpg.Checked = true;
+                }
             }
             catch (Exception err)
             {
@@ -1806,6 +1815,10 @@ namespace Civitai_Love
         private void rdoJpg_Validated(object sender, EventArgs e)
         {
             this.rdoJpgPngMp4_CheckedChanged( sender,  e);
+        }
+        private void rdoJpg_CheckedChanged(object sender, EventArgs e)
+        {
+            this.rdoJpgPngMp4_CheckedChanged(sender, e);
         }
 
         /// <summary>
