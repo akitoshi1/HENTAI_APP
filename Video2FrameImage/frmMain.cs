@@ -25,9 +25,24 @@ namespace Civitai_Love
         {
 
             /// <summary>
-            /// 出力ディレクトリ
+            /// 出力ディレクトリ(V2FI)
             /// </summary>
             public string OutputDirectory { get; set; }
+
+            /// <summary>
+            /// 出力ディレクトリ(V2V)
+            /// </summary>
+            public string OutputDirectoryV2V { get; set; }
+
+            /// <summary>
+            /// フレーム出力を使わない(ラジオボタンが非表示)
+            /// </summary>
+            public bool DontUseV2FI = false;
+
+            /// <summary>
+            /// 動画出力を使わない(ラジオボタンが非表示)
+            /// </summary>
+            public bool DontUseV2V = false;
         }
 
 
@@ -97,6 +112,12 @@ namespace Civitai_Love
             /// フレーム出力した回数
             /// </summary>
             public int intoutPutCount = 0;
+
+            /// <summary>
+            /// 動画出力した回数
+            /// </summary>
+            public int intoutV2VCount = 0;
+
         }
 
         #endregion クラス
@@ -152,6 +173,8 @@ namespace Civitai_Love
         /// 読込パス
         /// </summary>
         public string lordPath = string.Empty;
+
+
 
         /// <summary>
         /// 読み込んだビデオファイル
@@ -256,6 +279,43 @@ namespace Civitai_Love
         }
 
         /// <summary>
+        /// 出力フォルダの取得
+        /// </summary>
+        /// <returns></returns>
+        public string GetOutputV2VPath()
+        {
+            string outputPath = string.Empty;
+            try
+            {
+                //ビデオファイルは読込済か？
+                if (this.videoFile.name == string.Empty)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    //システム設定-出力先フォルダがあるか？
+                    if (this.systemSetting.OutputDirectoryV2V != null)
+                    {
+                        // 出力フォルダ+動画ファイル名（拡張子なし）
+                        outputPath = Path.Combine(this.systemSetting.OutputDirectoryV2V, Path.GetFileNameWithoutExtension(this.videoFile.fullName));
+                    }
+                    else
+                    {
+                        // 動画の配置場所+動画ファイル名（拡張子なし）
+                        outputPath = Path.Combine(Path.GetDirectoryName(this.videoFile.fullName), Path.GetFileNameWithoutExtension(this.videoFile.fullName));
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                throw err;
+            }
+            return outputPath;
+        }
+
+
+        /// <summary>
         /// 次のアプリのパス
         /// </summary>
         /// <returns></returns>
@@ -303,6 +363,9 @@ namespace Civitai_Love
                     return;
                 }
 
+                //パネルのアンカー初期化
+                this.pnlEditVideo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+
                 // ビデオファイルの設定
                 this.SetVideoFile();
 
@@ -344,7 +407,13 @@ namespace Civitai_Love
                 toolTip.SetToolTip(this.btnSystemOutput, "Select Flame Image Output Folder");  //出力先選択
                 toolTip.SetToolTip(this.btnSystemSettingClose, "System Setting End");          //システム設定終了
                 toolTip.SetToolTip(this.btnTEST_FFMPEG, "Video 2 FrameImage Files");           //フレーム画像の出力
-                toolTip.SetToolTip(this.btnSend_Packer, "Go 2 Next Work!!");                    //次の処理へ
+                toolTip.SetToolTip(this.btnSend_Packer, "Go 2 Next Work!!");                   //次の処理へ
+
+                toolTip.SetToolTip(this.btnV2V_FFMPEG, "Video 2 Clip Video File");              //フレーム指定動画の出力
+                toolTip.SetToolTip(this.btnV2TXT, "Create Brank Caption Text File");           //空のキャプションファイルを作成する
+
+                //利用しない設定
+                this.SetDontUse();
             }
             catch (Exception err)
             {
@@ -896,6 +965,10 @@ namespace Civitai_Love
 
             //システム設定値を表示
             this.txtSystemOutput.Text = this.systemSetting.OutputDirectory;
+            this.txtSystemOutputV2V.Text = this.systemSetting.OutputDirectoryV2V;
+            this.chkDontUseV2FI.Checked = this.systemSetting.DontUseV2FI;
+            this.chkDontUseV2V.Checked = this.systemSetting.DontUseV2V;
+
 
             this.pnlSystemSeting.Top = 58;
             this.pnlSystemSeting.Left = 12;
@@ -942,6 +1015,9 @@ namespace Civitai_Love
 
                 //システム設定の更新
                 this.systemSetting.OutputDirectory = this.txtSystemOutput.Text;
+                this.systemSetting.OutputDirectoryV2V = this.txtSystemOutputV2V.Text;
+                this.systemSetting.DontUseV2FI = this.chkDontUseV2FI.Checked;
+                this.systemSetting.DontUseV2V = this.chkDontUseV2V.Checked;                  
 
                 //システム情報をシリアライズ
                 this.SerializeClass();
@@ -949,8 +1025,53 @@ namespace Civitai_Love
                 this.Width = 1030;
                 this.Height = 750;
 
+                //利用しない設定
+                this.SetDontUse();
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        /// <summary>
+        /// 利用しない設定
+        /// </summary>
+        private void SetDontUse()
+        {
+            bool isVisibleV2FI = false;
+            bool isVisibleV2V = false;
+            try
+            {
+                // V2FIの利用設定
+                if(this.systemSetting.DontUseV2FI )
+                {
+                    isVisibleV2FI = false;
+                }
+                else
+                {
+                    isVisibleV2FI = true;
+                }
+                
+                // V2Vの利用設定
+                if(this.systemSetting.DontUseV2V )
+                {
+                    isVisibleV2V = false;
+                }
+                else
+                {
+                    isVisibleV2V = true;
+                }
 
+                // V2FI関係
+                this.rdoJpg.Visible = isVisibleV2FI;
+                this.rdoPng.Visible = isVisibleV2FI;
+                this.btnTEST_FFMPEG.Visible = isVisibleV2FI;
+
+                // V2V関係
+                this.rdoMp4.Visible = isVisibleV2V;
+                this.btnV2V_FFMPEG.Visible = isVisibleV2V;
+                this.lblV2V.Visible = isVisibleV2V;
             }
             catch (Exception err)
             {
@@ -1132,11 +1253,13 @@ namespace Civitai_Love
 
                         // 次の作業グループボックスを表示する
                         this.SetGroupBoxNext();
+                        this.SetGroupBoxMP4();
                     }
                     else
                     {
                         // 次の作業グループボックスを非表示する
                         this.groupBoxNext.Visible = false;
+                        this.groupBoxMP4.Visible = false; 
 
                     }
 
@@ -1229,7 +1352,21 @@ namespace Civitai_Love
 
                 int imageCount = totalFrame / Convert.ToInt32(this.cmbFrameInterval.Text);
 
-                this.lblTotalFrameImageCout.Text = "Tortal Frame Image: " + imageCount.ToString();
+
+                if (rdoMp4.Checked)
+                {
+                    //ビデオ出力の場合
+                    TimeSpan tsStart = TimeSpan.Parse (  this.lblTrimStartTime.Text);
+                    TimeSpan tsEnd = TimeSpan.Parse(this.lblTrimEndTime.Text);
+                    TimeSpan ts = tsEnd - tsStart;
+
+                    this.lblTotalFrameImageCout.Text = "Clip Video Time: " + ts.ToString(@"hh\:mm\:ss") ;
+                }
+                else
+                {
+                    //フレームイメージ出力の場合
+                    this.lblTotalFrameImageCout.Text = "Tortal Frame Image: " + imageCount.ToString();
+                }
             }
             catch (Exception err)
             {
@@ -1332,18 +1469,26 @@ namespace Civitai_Love
         private int GetOutputPath_CutOutCount()
         {
             int cutOutCount = 0;
+
             try
             {
                 var dir = new DirectoryInfo(this.GetOutputPath());
                 var newest = dir.GetFiles()
-                                .OrderByDescending(f => f.LastWriteTime)
+                    .Where(x => x.Extension != ".mp4")
+                    .OrderByDescending(f => f.LastWriteTime)                                
                                 .FirstOrDefault();
 
                 string[] fileNameSplit = newest.Name.Split('_');
-                cutOutCount = Convert.ToInt32(fileNameSplit[1]);
 
-                this.videoFile.intoutPutCount = cutOutCount + 1;
-
+                try
+                {
+                    cutOutCount = Convert.ToInt32(fileNameSplit[1]);
+                    this.videoFile.intoutPutCount = cutOutCount + 1;
+                }
+                catch
+                {
+                    //失敗するのは別物なので無視する
+                }
             }
             catch (Exception err)
             {
@@ -1401,6 +1546,15 @@ namespace Civitai_Love
                     //終了フレームを動画終了 3秒前
                     this.trackBar_TrimEnd.Value = this.trackBar_TrimEnd.Maximum - Convert.ToInt32(this.videoFile.doubleFPS * 3);
                 }
+                else
+                {
+                    //開始フレームを動画開始 
+                    this.trackBar_TrimStart.Value = 2;
+
+                    //終了フレームを動画終了 
+                    this.trackBar_TrimEnd.Value = this.trackBar_TrimEnd.Maximum - 1;
+
+                }
 
 
             }
@@ -1416,7 +1570,7 @@ namespace Civitai_Love
         private void SetGroupBoxNext()
         {
             string outputPath = this.GetOutputPath();
-
+            string[] extensions = { "*.png", "*.jpg" };
             try
             {
                 // 出力対象ディレクトリの存在チェック
@@ -1425,15 +1579,23 @@ namespace Civitai_Love
                     this.groupBoxNext.Visible = false;
                 }
                 else
-                {
-                    this.groupBoxNext.Visible = true;
+                {                    
+                    //出力済み画像ファイル件数を求める                    
+                    int count = extensions
+                        .SelectMany(ext => Directory.GetFiles(outputPath, ext))
+                        .Count();
 
-                    //出力済みファイル件数を求める
-                    DirectoryInfo di = new DirectoryInfo(outputPath);
-                    FileInfo[] arrayFI = di.GetFiles();
+                    if (count > 0)
+                    {
+                        this.groupBoxNext.Visible = true;
 
-                    this.txtCutOutPath.Text = outputPath;
-                    this.lblOutputFiles.Text = "Tortal CutOut Image Count: " + arrayFI.Length.ToString();
+                        this.txtCutOutPath.Text = outputPath;
+                        this.lblOutputFiles.Text = "Tortal CutOut Image Count: " + count.ToString();
+                    }
+                    else
+                    {
+                        this.groupBoxNext.Visible = false ;
+                    }
                 }
             }
             catch (Exception err)
@@ -1441,6 +1603,69 @@ namespace Civitai_Love
                 MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        /// <summary>
+        /// 出力済み動画件数グループボックスの設定
+        /// </summary>
+        private void SetGroupBoxMP4()
+        {
+            string outputPath = this.GetOutputV2VPath();
+            try
+            {
+                // 出力対象ディレクトリの存在チェック
+                if (!Directory.Exists(outputPath))
+                {
+                    this.groupBoxMP4.Visible = false;
+                }
+                else
+                {
+
+                    //出力済み動画ファイル件数を求める
+                    int count = this.GetOutputMp4Count();
+
+                    if (count > 0)
+                    {
+                        this.groupBoxMP4.Visible = true;
+                        this.lblOutputMp4Files.Text = "Tortal Clip Video Count: " + count.ToString();
+                    }
+                    else
+                    {
+                        this.groupBoxMP4.Visible = false;
+                    }
+                }
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// 出力済み動画件数を求める
+        /// </summary>
+        /// <returns></returns>
+        private int GetOutputMp4Count()
+        {
+            string outputPath = this.GetOutputV2VPath();
+            string extension = "*.mp4";
+            try
+            {
+                //出力済み動画ファイル件数を求める
+                int count = Directory.GetFiles(outputPath, extension).Length;
+
+                this.videoFile.intoutV2VCount = count + 1;
+
+                return count;
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return 0;
+        }
+
+
 
         #endregion 動画編集パネル
 
@@ -1490,5 +1715,246 @@ namespace Civitai_Love
 
         #endregion FFMPEG
 
+
+        /// <summary>
+        /// 動画ファイルの切り出し
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnV2V_FFMPEG_Click(object sender, EventArgs e)
+        {
+            string trans = string.Empty;
+            try
+            {
+                string outputPath = this.GetOutputV2VPath();
+
+                // 回転設定
+                if (this.chkIsTranspose.Checked)
+                {
+                    if (this.rdoTranspose1.Checked)
+                    {
+                        trans = "1";
+                    }
+                    else
+                    {
+                        trans = "2";
+                    }
+                }
+
+                // フォルダ確認
+                if (Directory.Exists(outputPath))
+                {
+                }
+                else
+                {
+                    //ディレクトリの作成
+                    Directory.CreateDirectory(outputPath);
+                }
+
+
+                //エクスプローラーを開く
+                Process.Start("explorer.exe", outputPath);
+
+
+                //出力ファイル名の重複チェック
+                string outputFilePath = Path.Combine(outputPath, "Clip_" + this.videoFile.intoutV2VCount.ToString() + ".mp4");
+                if (File.Exists(outputFilePath))
+                {
+                    for (int i = 1; i < 10000; i++)
+                    {
+                        this.videoFile.intoutV2VCount = this.videoFile.intoutV2VCount + i;
+                        outputFilePath = Path.Combine(outputPath, "Clip_" + this.videoFile.intoutV2VCount.ToString() + ".mp4");
+                        if (!File.Exists(outputFilePath))
+                        {
+                            break;
+                        }
+                    }
+                }
+
+                //フレーム出力
+                //MP4出力
+                FFmpegIO.ExtractV2V(this.videoFile.fullName,
+                                        Convert.ToInt32(this.txtTrimStart.Text),
+                                        Convert.ToInt32(this.txtTrimEnd.Text),                                        
+                                        this.videoFile.doubleFPS,
+                                        Path.Combine(outputPath, "Clip_" + this.videoFile.intoutV2VCount.ToString() + ".mp4"), trans);
+
+                //出力回数を加算
+                this.videoFile.intoutV2VCount++;
+
+
+                // 次の作業グループボックスを表示する
+                this.SetGroupBoxMP4();
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rdoJpg_Validated(object sender, EventArgs e)
+        {
+            this.rdoJpgPngMp4_CheckedChanged( sender,  e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rdoPng_CheckedChanged(object sender, EventArgs e)
+        {
+            this.rdoJpgPngMp4_CheckedChanged(sender, e);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rdoMp4_CheckedChanged(object sender, EventArgs e)
+        {
+            this.rdoJpgPngMp4_CheckedChanged(sender, e);
+        }
+
+        /// <summary>
+        /// ラジオボタンに該当するボタンの有効化
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void rdoJpgPngMp4_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            switch (rb.Text)
+            {
+                case "JPG":
+                case "PNG":
+                    this.btnTEST_FFMPEG.Enabled = true;
+                    this.btnV2V_FFMPEG.Enabled = false; 
+                    break;
+
+                case "MP4":
+                    this.btnTEST_FFMPEG.Enabled = false;
+                    this.btnV2V_FFMPEG.Enabled = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// mp4ファイルと同名のテキストファイルを作成する
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnV2TXT_Click(object sender, EventArgs e)
+        {
+            string outputPath = this.GetOutputV2VPath();
+            string extension = "*.mp4";
+
+            int outCount = 0;   //出力件数
+            try
+            {
+                //出力済み動画ファイル件数を求める
+                string [] arrayMp4  = Directory.GetFiles(outputPath, extension);
+                
+                foreach (string mp4 in arrayMp4 )
+                {
+                    string txtName = Path.GetFileNameWithoutExtension(mp4) + ".txt";
+                    string txtPath = Path.Combine(outputPath, txtName);
+
+                    //テキストファイルが存在しないなら空ファイルを作成する
+                    if(!File.Exists(txtPath) )
+                    {
+                        File.WriteAllText(txtPath, string.Empty);
+
+                        outCount++;
+                    }
+                }
+
+                //エクスプローラーを開く
+                Process.Start("explorer.exe", outputPath);
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkDontUseV2FI_CheckedChanged(object sender, EventArgs e)
+        {
+            bool blnVisible = false;
+            if(this.chkDontUseV2FI.Checked  )
+            {
+                blnVisible = false;
+            }
+            else
+            {
+                blnVisible = true;
+            }
+
+            this.lblSystemOutput.Visible = blnVisible;
+            this.txtSystemOutput.Visible = blnVisible;
+            this.btnSystemOutput.Visible = blnVisible;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkDontUseV2V_CheckedChanged(object sender, EventArgs e)
+        {
+            bool blnVisible = false;
+            if (this.chkDontUseV2V.Checked)
+            {
+                blnVisible = false;
+            }
+            else
+            {
+                blnVisible = true;
+            }
+
+            this.lblSystemOutputV2V.Visible = blnVisible;
+            this.txtSystemOutputV2V.Visible = blnVisible;
+            this.btnSystemOutputV2V.Visible = blnVisible;
+        }
+
+        /// <summary>
+        /// フォルダを開くボタン
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSystemOutputV2V_Click(object sender, EventArgs e)
+        {
+
+            var dialog = new FolderBrowserDialog();
+
+            dialog.Description = "フォルダを選択してください";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.txtSystemOutputV2V.Text = dialog.SelectedPath;
+                this.systemSetting.OutputDirectoryV2V = this.txtSystemOutputV2V.Text;
+            }
+        }
+
     }
+
 }

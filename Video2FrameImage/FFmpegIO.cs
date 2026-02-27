@@ -334,6 +334,99 @@ namespace Civitai_Love
 
 
 
+        /// <summary>
+        /// 動画を開始-と終了フレームを指定してMP4出力
+        /// </summary>
+        /// <param name="inputPath"></param>
+        /// <param name="startFrame"></param>
+        /// <param name="endFrame"></param>        
+        /// <param name="fps"></param>
+        /// <param name="outputPattern"></param>
+        public static void ExtractV2V(
+                                            string inputPath,
+                                            int startFrame,
+                                            int endFrame,                                            
+                                            double fps,
+                                            string outputPattern,
+                                            string transpose)
+        {
+            try
+            {
+                double startSec = startFrame / fps;
+                double endSec = endFrame / fps;
+
+                var arguments =
+                    $"-i \"{inputPath}\" " +
+                    $"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',setpts=N/{fps}/TB\" " +
+                    $"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
+                    $"-an " +
+                    $"\"{outputPattern}\"";
+
+
+                // 回転設定があるなら修正
+                if (transpose != string.Empty)
+                {
+                    arguments += ",transpose={transpose}";
+                }
+
+                //using (var process = new Process())
+                //{
+                //    process.StartInfo = new ProcessStartInfo
+                //    {
+                //        FileName = "ffmpeg",
+                //        Arguments = arguments,
+                //        CreateNoWindow = true,
+                //        UseShellExecute = false,
+                //    };
+                //    process.Start();
+                //    process.WaitForExit();
+                //}
+
+                var psi = new ProcessStartInfo
+                {
+                    FileName = "ffmpeg",
+                    Arguments = arguments,
+                    RedirectStandardError = true,
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false,
+                    CreateNoWindow = true
+                };
+
+                var process = new Process { StartInfo = psi };
+
+                process.ErrorDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg Error: " + e.Data);
+                };
+
+                process.OutputDataReceived += (s, e) =>
+                {
+                    if (!string.IsNullOrEmpty(e.Data))
+                        Console.WriteLine("FFmpeg Output: " + e.Data);
+                };
+
+                process.Start();
+                process.BeginErrorReadLine();
+                process.BeginOutputReadLine();
+                process.WaitForExit();
+
+                if (process.ExitCode != 0)
+                {
+                    //Console.WriteLine($"FFmpeg ERROR (ExitCode={process.ExitCode})");
+                    MessageBox.Show($"FFmpeg ERROR (ExitCode={process.ExitCode})", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+
     }
 
 

@@ -153,7 +153,7 @@ namespace ImageChoiceAndResize
             this.btnBack.Location = new System.Drawing.Point(82, 21);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(64, 56);
-            this.btnBack.TabIndex = 2;
+            this.btnBack.TabIndex = 1;
             this.btnBack.Text = "⬅️";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
@@ -166,7 +166,7 @@ namespace ImageChoiceAndResize
             this.btnNext.Location = new System.Drawing.Point(553, 21);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(64, 56);
-            this.btnNext.TabIndex = 4;
+            this.btnNext.TabIndex = 3;
             this.btnNext.Text = "➡️";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.btnNext_Click);
@@ -180,7 +180,7 @@ namespace ImageChoiceAndResize
             this.btnRemove.Location = new System.Drawing.Point(152, 21);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(395, 56);
-            this.btnRemove.TabIndex = 3;
+            this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "🗑️";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -203,7 +203,7 @@ namespace ImageChoiceAndResize
             this.btnResize.Location = new System.Drawing.Point(622, 21);
             this.btnResize.Name = "btnResize";
             this.btnResize.Size = new System.Drawing.Size(64, 56);
-            this.btnResize.TabIndex = 5;
+            this.btnResize.TabIndex = 4;
             this.btnResize.Text = "📦";
             this.btnResize.UseVisualStyleBackColor = true;
             this.btnResize.Click += new System.EventHandler(this.btnResize_Click);
@@ -226,7 +226,7 @@ namespace ImageChoiceAndResize
             this.btnRelord.Location = new System.Drawing.Point(12, 21);
             this.btnRelord.Name = "btnRelord";
             this.btnRelord.Size = new System.Drawing.Size(64, 56);
-            this.btnRelord.TabIndex = 1;
+            this.btnRelord.TabIndex = 0;
             this.btnRelord.Text = "🔃";
             this.btnRelord.UseVisualStyleBackColor = true;
             this.btnRelord.Click += new System.EventHandler(this.btnRelord_Click);
@@ -268,7 +268,7 @@ namespace ImageChoiceAndResize
             this.chkAutoRelord.Location = new System.Drawing.Point(37, 475);
             this.chkAutoRelord.Name = "chkAutoRelord";
             this.chkAutoRelord.Size = new System.Drawing.Size(355, 32);
-            this.chkAutoRelord.TabIndex = 4;
+            this.chkAutoRelord.TabIndex = 3;
             this.chkAutoRelord.Text = "Auto ReLord Package (After Package Output)";
             this.chkAutoRelord.UseVisualStyleBackColor = true;
             // 
@@ -280,7 +280,7 @@ namespace ImageChoiceAndResize
             this.chkRenameFile.Location = new System.Drawing.Point(37, 437);
             this.chkRenameFile.Name = "chkRenameFile";
             this.chkRenameFile.Size = new System.Drawing.Size(359, 32);
-            this.chkRenameFile.TabIndex = 3;
+            this.chkRenameFile.TabIndex = 2;
             this.chkRenameFile.Text = "ReName File : 000001.jpg";
             this.chkRenameFile.UseVisualStyleBackColor = true;
             this.chkRenameFile.CheckedChanged += new System.EventHandler(this.chkRenameFile_CheckedChanged);
@@ -294,7 +294,7 @@ namespace ImageChoiceAndResize
             this.groupBox2.Location = new System.Drawing.Point(15, 320);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(225, 102);
-            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Image Format";
             // 
@@ -503,7 +503,7 @@ namespace ImageChoiceAndResize
             this.grpSetSize.Location = new System.Drawing.Point(15, 180);
             this.grpSetSize.Name = "grpSetSize";
             this.grpSetSize.Size = new System.Drawing.Size(639, 134);
-            this.grpSetSize.TabIndex = 1;
+            this.grpSetSize.TabIndex = 0;
             this.grpSetSize.TabStop = false;
             this.grpSetSize.Text = "ReSize and Package";
             // 
@@ -672,7 +672,7 @@ namespace ImageChoiceAndResize
             this.btnCancel.Location = new System.Drawing.Point(537, 407);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(130, 100);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.Text = "❌";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -684,7 +684,7 @@ namespace ImageChoiceAndResize
             this.btnResizePack.Location = new System.Drawing.Point(407, 407);
             this.btnResizePack.Name = "btnResizePack";
             this.btnResizePack.Size = new System.Drawing.Size(124, 100);
-            this.btnResizePack.TabIndex = 5;
+            this.btnResizePack.TabIndex = 4;
             this.btnResizePack.Text = "📦";
             this.btnResizePack.UseVisualStyleBackColor = true;
             this.btnResizePack.Click += new System.EventHandler(this.btnResizePack_Click);
@@ -758,7 +758,6 @@ namespace ImageChoiceAndResize
             this.ClientSize = new System.Drawing.Size(702, 664);
             this.Controls.Add(this.lblShowInfo3);
             this.Controls.Add(this.lblpleaseDorpDown);
-            this.Controls.Add(this.lblFolder);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.pnlResize);
             this.Controls.Add(this.btnRelord);
@@ -774,6 +773,7 @@ namespace ImageChoiceAndResize
             this.Controls.Add(this.lblImageHeight);
             this.Controls.Add(this.pnlLogo);
             this.Controls.Add(this.pictureBox);
+            this.Controls.Add(this.lblFolder);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmMain";
             this.Text = "Please Drop the Image Folder.";

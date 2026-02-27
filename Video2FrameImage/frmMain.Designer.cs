@@ -40,12 +40,22 @@ namespace Civitai_Love
             this.optionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlSystemSeting = new System.Windows.Forms.Panel();
-            this.btnSystemSettingClose = new System.Windows.Forms.Button();
-            this.btnSystemOutput = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtSystemOutputV2V = new System.Windows.Forms.TextBox();
+            this.lblSystemOutputV2V = new System.Windows.Forms.Label();
+            this.chkDontUseV2V = new System.Windows.Forms.CheckBox();
+            this.btnSystemOutputV2V = new System.Windows.Forms.Button();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.chkDontUseV2FI = new System.Windows.Forms.CheckBox();
             this.txtSystemOutput = new System.Windows.Forms.TextBox();
             this.lblSystemOutput = new System.Windows.Forms.Label();
+            this.btnSystemOutput = new System.Windows.Forms.Button();
+            this.btnSystemSettingClose = new System.Windows.Forms.Button();
             this.lblSystemSetting = new System.Windows.Forms.Label();
             this.pnlEditVideo = new System.Windows.Forms.Panel();
+            this.groupBoxMP4 = new System.Windows.Forms.GroupBox();
+            this.btnV2TXT = new System.Windows.Forms.Button();
+            this.lblOutputMp4Files = new System.Windows.Forms.Label();
             this.pnlsplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pictureBoxStart = new System.Windows.Forms.PictureBox();
             this.trackBar_TrimStart = new System.Windows.Forms.TrackBar();
@@ -80,6 +90,9 @@ namespace Civitai_Love
             this.lblSelect = new System.Windows.Forms.Label();
             this.cmbFrameInterval = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblV2V = new System.Windows.Forms.Label();
+            this.btnV2V_FFMPEG = new System.Windows.Forms.Button();
+            this.rdoMp4 = new System.Windows.Forms.RadioButton();
             this.rdoPng = new System.Windows.Forms.RadioButton();
             this.rdoJpg = new System.Windows.Forms.RadioButton();
             this.lblSystemInfo = new System.Windows.Forms.Label();
@@ -89,7 +102,10 @@ namespace Civitai_Love
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.pnlSystemSeting.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.pnlEditVideo.SuspendLayout();
+            this.groupBoxMP4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pnlsplitContainer1)).BeginInit();
             this.pnlsplitContainer1.Panel1.SuspendLayout();
             this.pnlsplitContainer1.Panel2.SuspendLayout();
@@ -165,12 +181,11 @@ namespace Civitai_Love
             // 
             // btnTEST_FFMPEG
             // 
-            this.btnTEST_FFMPEG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnTEST_FFMPEG.Font = new System.Drawing.Font("Segoe UI Emoji", 30F);
-            this.btnTEST_FFMPEG.Location = new System.Drawing.Point(255, 451);
+            this.btnTEST_FFMPEG.Location = new System.Drawing.Point(257, 15);
             this.btnTEST_FFMPEG.Name = "btnTEST_FFMPEG";
             this.btnTEST_FFMPEG.Size = new System.Drawing.Size(204, 67);
-            this.btnTEST_FFMPEG.TabIndex = 11;
+            this.btnTEST_FFMPEG.TabIndex = 3;
             this.btnTEST_FFMPEG.Text = "📽️➡️🖼️";
             this.btnTEST_FFMPEG.UseVisualStyleBackColor = true;
             this.btnTEST_FFMPEG.Click += new System.EventHandler(this.btnTEST_FFMPEG_Click);
@@ -202,63 +217,145 @@ namespace Civitai_Love
             // 
             // pnlSystemSeting
             // 
-            this.pnlSystemSeting.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlSystemSeting.Controls.Add(this.groupBox5);
+            this.pnlSystemSeting.Controls.Add(this.groupBox4);
             this.pnlSystemSeting.Controls.Add(this.btnSystemSettingClose);
-            this.pnlSystemSeting.Controls.Add(this.btnSystemOutput);
-            this.pnlSystemSeting.Controls.Add(this.txtSystemOutput);
-            this.pnlSystemSeting.Controls.Add(this.lblSystemOutput);
             this.pnlSystemSeting.Controls.Add(this.lblSystemSetting);
-            this.pnlSystemSeting.Location = new System.Drawing.Point(12, 625);
+            this.pnlSystemSeting.Location = new System.Drawing.Point(12, 693);
             this.pnlSystemSeting.Name = "pnlSystemSeting";
-            this.pnlSystemSeting.Size = new System.Drawing.Size(986, 191);
-            this.pnlSystemSeting.TabIndex = 0;
+            this.pnlSystemSeting.Size = new System.Drawing.Size(987, 271);
+            this.pnlSystemSeting.TabIndex = 1;
             this.pnlSystemSeting.Visible = false;
             // 
-            // btnSystemSettingClose
+            // groupBox5
             // 
-            this.btnSystemSettingClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSystemSettingClose.Font = new System.Drawing.Font("Segoe UI Emoji", 45F);
-            this.btnSystemSettingClose.Location = new System.Drawing.Point(856, 88);
-            this.btnSystemSettingClose.Name = "btnSystemSettingClose";
-            this.btnSystemSettingClose.Size = new System.Drawing.Size(124, 100);
-            this.btnSystemSettingClose.TabIndex = 2;
-            this.btnSystemSettingClose.Text = "👍";
-            this.btnSystemSettingClose.UseVisualStyleBackColor = true;
-            this.btnSystemSettingClose.Click += new System.EventHandler(this.btnSystemSettingClose_Click);
+            this.groupBox5.Controls.Add(this.txtSystemOutputV2V);
+            this.groupBox5.Controls.Add(this.lblSystemOutputV2V);
+            this.groupBox5.Controls.Add(this.chkDontUseV2V);
+            this.groupBox5.Controls.Add(this.btnSystemOutputV2V);
+            this.groupBox5.Font = new System.Drawing.Font("Segoe UI Emoji", 18F);
+            this.groupBox5.Location = new System.Drawing.Point(18, 168);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(824, 97);
+            this.groupBox5.TabIndex = 12;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "V2V 📽️➡️📽️";
             // 
-            // btnSystemOutput
+            // txtSystemOutputV2V
             // 
-            this.btnSystemOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSystemOutput.Font = new System.Drawing.Font("Segoe UI Emoji", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSystemOutput.Location = new System.Drawing.Point(926, 40);
-            this.btnSystemOutput.Name = "btnSystemOutput";
-            this.btnSystemOutput.Size = new System.Drawing.Size(53, 23);
-            this.btnSystemOutput.TabIndex = 1;
-            this.btnSystemOutput.Text = "📁";
-            this.btnSystemOutput.UseVisualStyleBackColor = true;
-            this.btnSystemOutput.Click += new System.EventHandler(this.btnSystemOutput_Click);
+            this.txtSystemOutputV2V.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSystemOutputV2V.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSystemOutputV2V.Location = new System.Drawing.Point(117, 63);
+            this.txtSystemOutputV2V.Name = "txtSystemOutputV2V";
+            this.txtSystemOutputV2V.ReadOnly = true;
+            this.txtSystemOutputV2V.Size = new System.Drawing.Size(610, 23);
+            this.txtSystemOutputV2V.TabIndex = 0;
+            // 
+            // lblSystemOutputV2V
+            // 
+            this.lblSystemOutputV2V.AutoSize = true;
+            this.lblSystemOutputV2V.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSystemOutputV2V.Location = new System.Drawing.Point(12, 67);
+            this.lblSystemOutputV2V.Name = "lblSystemOutputV2V";
+            this.lblSystemOutputV2V.Size = new System.Drawing.Size(99, 15);
+            this.lblSystemOutputV2V.TabIndex = 10;
+            this.lblSystemOutputV2V.Text = "Output Directory:";
+            // 
+            // chkDontUseV2V
+            // 
+            this.chkDontUseV2V.AutoSize = true;
+            this.chkDontUseV2V.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.chkDontUseV2V.Location = new System.Drawing.Point(15, 32);
+            this.chkDontUseV2V.Name = "chkDontUseV2V";
+            this.chkDontUseV2V.Size = new System.Drawing.Size(202, 25);
+            this.chkDontUseV2V.TabIndex = 2;
+            this.chkDontUseV2V.Text = "Dont Use Video to Video.";
+            this.chkDontUseV2V.UseVisualStyleBackColor = true;
+            this.chkDontUseV2V.CheckedChanged += new System.EventHandler(this.chkDontUseV2V_CheckedChanged);
+            // 
+            // btnSystemOutputV2V
+            // 
+            this.btnSystemOutputV2V.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSystemOutputV2V.Font = new System.Drawing.Font("Segoe UI Emoji", 30F);
+            this.btnSystemOutputV2V.Location = new System.Drawing.Point(733, 32);
+            this.btnSystemOutputV2V.Name = "btnSystemOutputV2V";
+            this.btnSystemOutputV2V.Size = new System.Drawing.Size(81, 58);
+            this.btnSystemOutputV2V.TabIndex = 0;
+            this.btnSystemOutputV2V.Text = "📁";
+            this.btnSystemOutputV2V.UseVisualStyleBackColor = true;
+            this.btnSystemOutputV2V.Click += new System.EventHandler(this.btnSystemOutputV2V_Click);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.chkDontUseV2FI);
+            this.groupBox4.Controls.Add(this.txtSystemOutput);
+            this.groupBox4.Controls.Add(this.lblSystemOutput);
+            this.groupBox4.Controls.Add(this.btnSystemOutput);
+            this.groupBox4.Font = new System.Drawing.Font("Segoe UI Emoji", 18F);
+            this.groupBox4.Location = new System.Drawing.Point(18, 41);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(824, 102);
+            this.groupBox4.TabIndex = 11;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "V2FI [📽️➡️🖼️]";
+            // 
+            // chkDontUseV2FI
+            // 
+            this.chkDontUseV2FI.AutoSize = true;
+            this.chkDontUseV2FI.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.chkDontUseV2FI.Location = new System.Drawing.Point(15, 32);
+            this.chkDontUseV2FI.Name = "chkDontUseV2FI";
+            this.chkDontUseV2FI.Size = new System.Drawing.Size(260, 25);
+            this.chkDontUseV2FI.TabIndex = 1;
+            this.chkDontUseV2FI.Text = "Dont Use Video to Frame Images.";
+            this.chkDontUseV2FI.UseVisualStyleBackColor = true;
+            this.chkDontUseV2FI.CheckedChanged += new System.EventHandler(this.chkDontUseV2FI_CheckedChanged);
             // 
             // txtSystemOutput
             // 
             this.txtSystemOutput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtSystemOutput.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSystemOutput.Location = new System.Drawing.Point(123, 40);
+            this.txtSystemOutput.Location = new System.Drawing.Point(117, 63);
             this.txtSystemOutput.Name = "txtSystemOutput";
             this.txtSystemOutput.ReadOnly = true;
-            this.txtSystemOutput.Size = new System.Drawing.Size(797, 23);
+            this.txtSystemOutput.Size = new System.Drawing.Size(610, 23);
             this.txtSystemOutput.TabIndex = 0;
             // 
             // lblSystemOutput
             // 
             this.lblSystemOutput.AutoSize = true;
             this.lblSystemOutput.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSystemOutput.Location = new System.Drawing.Point(18, 40);
+            this.lblSystemOutput.Location = new System.Drawing.Point(12, 67);
             this.lblSystemOutput.Name = "lblSystemOutput";
             this.lblSystemOutput.Size = new System.Drawing.Size(99, 15);
             this.lblSystemOutput.TabIndex = 10;
             this.lblSystemOutput.Text = "Output Directory:";
+            // 
+            // btnSystemOutput
+            // 
+            this.btnSystemOutput.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSystemOutput.Font = new System.Drawing.Font("Segoe UI Emoji", 30F);
+            this.btnSystemOutput.Location = new System.Drawing.Point(733, 32);
+            this.btnSystemOutput.Name = "btnSystemOutput";
+            this.btnSystemOutput.Size = new System.Drawing.Size(81, 58);
+            this.btnSystemOutput.TabIndex = 0;
+            this.btnSystemOutput.Text = "📁";
+            this.btnSystemOutput.UseVisualStyleBackColor = true;
+            this.btnSystemOutput.Click += new System.EventHandler(this.btnSystemOutput_Click);
+            // 
+            // btnSystemSettingClose
+            // 
+            this.btnSystemSettingClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSystemSettingClose.Font = new System.Drawing.Font("Segoe UI Emoji", 45F);
+            this.btnSystemSettingClose.Location = new System.Drawing.Point(857, 168);
+            this.btnSystemSettingClose.Name = "btnSystemSettingClose";
+            this.btnSystemSettingClose.Size = new System.Drawing.Size(124, 100);
+            this.btnSystemSettingClose.TabIndex = 3;
+            this.btnSystemSettingClose.Text = "👍";
+            this.btnSystemSettingClose.UseVisualStyleBackColor = true;
+            this.btnSystemSettingClose.Click += new System.EventHandler(this.btnSystemSettingClose_Click);
             // 
             // lblSystemSetting
             // 
@@ -272,21 +369,52 @@ namespace Civitai_Love
             // 
             // pnlEditVideo
             // 
-            this.pnlEditVideo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlEditVideo.Controls.Add(this.groupBoxMP4);
             this.pnlEditVideo.Controls.Add(this.pnlsplitContainer1);
             this.pnlEditVideo.Controls.Add(this.groupBoxNext);
             this.pnlEditVideo.Controls.Add(this.groupBox3);
             this.pnlEditVideo.Controls.Add(this.groupBox1);
             this.pnlEditVideo.Controls.Add(this.groupBox2);
-            this.pnlEditVideo.Controls.Add(this.btnTEST_FFMPEG);
             this.pnlEditVideo.Controls.Add(this.lblSystemInfo);
             this.pnlEditVideo.Location = new System.Drawing.Point(12, 62);
             this.pnlEditVideo.Name = "pnlEditVideo";
-            this.pnlEditVideo.Size = new System.Drawing.Size(987, 532);
-            this.pnlEditVideo.TabIndex = 1;
+            this.pnlEditVideo.Size = new System.Drawing.Size(987, 625);
+            this.pnlEditVideo.TabIndex = 0;
             this.pnlEditVideo.Visible = false;
+            // 
+            // groupBoxMP4
+            // 
+            this.groupBoxMP4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBoxMP4.Controls.Add(this.btnV2TXT);
+            this.groupBoxMP4.Controls.Add(this.lblOutputMp4Files);
+            this.groupBoxMP4.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.groupBoxMP4.Location = new System.Drawing.Point(499, 527);
+            this.groupBoxMP4.Name = "groupBoxMP4";
+            this.groupBoxMP4.Size = new System.Drawing.Size(478, 78);
+            this.groupBoxMP4.TabIndex = 1;
+            this.groupBoxMP4.TabStop = false;
+            this.groupBoxMP4.Text = "CutOut Mp4 Files";
+            this.groupBoxMP4.Visible = false;
+            // 
+            // btnV2TXT
+            // 
+            this.btnV2TXT.Font = new System.Drawing.Font("Segoe UI Emoji", 30F);
+            this.btnV2TXT.Location = new System.Drawing.Point(260, 13);
+            this.btnV2TXT.Name = "btnV2TXT";
+            this.btnV2TXT.Size = new System.Drawing.Size(204, 59);
+            this.btnV2TXT.TabIndex = 0;
+            this.btnV2TXT.Text = "📽️➡️🗒️";
+            this.btnV2TXT.UseVisualStyleBackColor = true;
+            this.btnV2TXT.Click += new System.EventHandler(this.btnV2TXT_Click);
+            // 
+            // lblOutputMp4Files
+            // 
+            this.lblOutputMp4Files.AutoSize = true;
+            this.lblOutputMp4Files.Location = new System.Drawing.Point(17, 35);
+            this.lblOutputMp4Files.Name = "lblOutputMp4Files";
+            this.lblOutputMp4Files.Size = new System.Drawing.Size(185, 21);
+            this.lblOutputMp4Files.TabIndex = 2;
+            this.lblOutputMp4Files.Text = "Tortal Clip Video Count: 0";
             // 
             // pnlsplitContainer1
             // 
@@ -319,7 +447,7 @@ namespace Civitai_Love
             this.pnlsplitContainer1.Panel2.Controls.Add(this.lblCutEnd2);
             this.pnlsplitContainer1.Size = new System.Drawing.Size(974, 247);
             this.pnlsplitContainer1.SplitterDistance = 490;
-            this.pnlsplitContainer1.TabIndex = 20;
+            this.pnlsplitContainer1.TabIndex = 3;
             this.pnlsplitContainer1.Visible = false;
             // 
             // pictureBoxStart
@@ -366,7 +494,7 @@ namespace Civitai_Love
             this.btnSp.Location = new System.Drawing.Point(168, 205);
             this.btnSp.Name = "btnSp";
             this.btnSp.Size = new System.Drawing.Size(64, 32);
-            this.btnSp.TabIndex = 3;
+            this.btnSp.TabIndex = 2;
             this.btnSp.Text = "+30";
             this.btnSp.UseVisualStyleBackColor = true;
             this.btnSp.Click += new System.EventHandler(this.btnSp30_Click);
@@ -389,7 +517,7 @@ namespace Civitai_Love
             this.btnSm.Location = new System.Drawing.Point(102, 205);
             this.btnSm.Name = "btnSm";
             this.btnSm.Size = new System.Drawing.Size(64, 32);
-            this.btnSm.TabIndex = 2;
+            this.btnSm.TabIndex = 1;
             this.btnSm.Text = "-30";
             this.btnSm.UseVisualStyleBackColor = true;
             this.btnSm.Click += new System.EventHandler(this.btnSm30_Click);
@@ -413,7 +541,7 @@ namespace Civitai_Love
             this.txtTrimStart.Name = "txtTrimStart";
             this.txtTrimStart.ReadOnly = true;
             this.txtTrimStart.Size = new System.Drawing.Size(130, 29);
-            this.txtTrimStart.TabIndex = 1;
+            this.txtTrimStart.TabIndex = 3;
             this.txtTrimStart.TabStop = false;
             this.txtTrimStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -437,7 +565,7 @@ namespace Civitai_Love
             this.btnEp.Location = new System.Drawing.Point(165, 202);
             this.btnEp.Name = "btnEp";
             this.btnEp.Size = new System.Drawing.Size(64, 32);
-            this.btnEp.TabIndex = 7;
+            this.btnEp.TabIndex = 2;
             this.btnEp.Text = "+30";
             this.btnEp.UseVisualStyleBackColor = true;
             this.btnEp.Click += new System.EventHandler(this.btnEp30_Click);
@@ -450,7 +578,7 @@ namespace Civitai_Love
             this.trackBar_TrimEnd.Minimum = 2;
             this.trackBar_TrimEnd.Name = "trackBar_TrimEnd";
             this.trackBar_TrimEnd.Size = new System.Drawing.Size(457, 45);
-            this.trackBar_TrimEnd.TabIndex = 4;
+            this.trackBar_TrimEnd.TabIndex = 0;
             this.trackBar_TrimEnd.Value = 2;
             this.trackBar_TrimEnd.ValueChanged += new System.EventHandler(this.trackBar_TrimEnd_ValueChanged);
             this.trackBar_TrimEnd.Leave += new System.EventHandler(this.trackBar_TrimEnd_Leave);
@@ -462,7 +590,7 @@ namespace Civitai_Love
             this.btnEm.Location = new System.Drawing.Point(99, 202);
             this.btnEm.Name = "btnEm";
             this.btnEm.Size = new System.Drawing.Size(64, 32);
-            this.btnEm.TabIndex = 6;
+            this.btnEm.TabIndex = 1;
             this.btnEm.Text = "-30";
             this.btnEm.UseVisualStyleBackColor = true;
             this.btnEm.Click += new System.EventHandler(this.btnEm30_Click);
@@ -486,7 +614,7 @@ namespace Civitai_Love
             this.txtTrimEnd.Name = "txtTrimEnd";
             this.txtTrimEnd.ReadOnly = true;
             this.txtTrimEnd.Size = new System.Drawing.Size(130, 29);
-            this.txtTrimEnd.TabIndex = 5;
+            this.txtTrimEnd.TabIndex = 3;
             this.txtTrimEnd.TabStop = false;
             this.txtTrimEnd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -524,7 +652,7 @@ namespace Civitai_Love
             this.groupBoxNext.Location = new System.Drawing.Point(499, 256);
             this.groupBoxNext.Name = "groupBoxNext";
             this.groupBoxNext.Size = new System.Drawing.Size(478, 263);
-            this.groupBoxNext.TabIndex = 12;
+            this.groupBoxNext.TabIndex = 0;
             this.groupBoxNext.TabStop = false;
             this.groupBoxNext.Text = "CutOut Frame Image Files";
             this.groupBoxNext.Visible = false;
@@ -576,7 +704,7 @@ namespace Civitai_Love
             this.btnSend_Packer.Location = new System.Drawing.Point(260, 192);
             this.btnSend_Packer.Name = "btnSend_Packer";
             this.btnSend_Packer.Size = new System.Drawing.Size(204, 67);
-            this.btnSend_Packer.TabIndex = 3;
+            this.btnSend_Packer.TabIndex = 1;
             this.btnSend_Packer.Text = "🖼️➡️📦";
             this.btnSend_Packer.UseVisualStyleBackColor = true;
             this.btnSend_Packer.Click += new System.EventHandler(this.btnSend_Packer_Click);
@@ -593,7 +721,7 @@ namespace Civitai_Love
             this.groupBox3.Location = new System.Drawing.Point(11, 345);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(467, 88);
-            this.groupBox3.TabIndex = 9;
+            this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Transpose";
             // 
@@ -662,7 +790,7 @@ namespace Civitai_Love
             this.groupBox1.Location = new System.Drawing.Point(11, 256);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(467, 79);
-            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Frame interval";
             // 
@@ -720,15 +848,52 @@ namespace Civitai_Love
             // groupBox2
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox2.Controls.Add(this.lblV2V);
+            this.groupBox2.Controls.Add(this.btnV2V_FFMPEG);
+            this.groupBox2.Controls.Add(this.rdoMp4);
             this.groupBox2.Controls.Add(this.rdoPng);
             this.groupBox2.Controls.Add(this.rdoJpg);
+            this.groupBox2.Controls.Add(this.btnTEST_FFMPEG);
             this.groupBox2.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.groupBox2.Location = new System.Drawing.Point(11, 443);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(238, 76);
-            this.groupBox2.TabIndex = 10;
+            this.groupBox2.Size = new System.Drawing.Size(467, 162);
+            this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Output Image Format";
+            this.groupBox2.Text = "Output Format";
+            // 
+            // lblV2V
+            // 
+            this.lblV2V.AutoSize = true;
+            this.lblV2V.Location = new System.Drawing.Point(67, 117);
+            this.lblV2V.Name = "lblV2V";
+            this.lblV2V.Size = new System.Drawing.Size(188, 21);
+            this.lblV2V.TabIndex = 36;
+            this.lblV2V.Text = "(Start Frame - End Frame)";
+            // 
+            // btnV2V_FFMPEG
+            // 
+            this.btnV2V_FFMPEG.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnV2V_FFMPEG.Enabled = false;
+            this.btnV2V_FFMPEG.Font = new System.Drawing.Font("Segoe UI Emoji", 30F);
+            this.btnV2V_FFMPEG.Location = new System.Drawing.Point(257, 84);
+            this.btnV2V_FFMPEG.Name = "btnV2V_FFMPEG";
+            this.btnV2V_FFMPEG.Size = new System.Drawing.Size(204, 67);
+            this.btnV2V_FFMPEG.TabIndex = 4;
+            this.btnV2V_FFMPEG.Text = "📽️➡️📽️";
+            this.btnV2V_FFMPEG.UseVisualStyleBackColor = true;
+            this.btnV2V_FFMPEG.Click += new System.EventHandler(this.btnV2V_FFMPEG_Click);
+            // 
+            // rdoMp4
+            // 
+            this.rdoMp4.AutoSize = true;
+            this.rdoMp4.Location = new System.Drawing.Point(15, 115);
+            this.rdoMp4.Name = "rdoMp4";
+            this.rdoMp4.Size = new System.Drawing.Size(60, 25);
+            this.rdoMp4.TabIndex = 2;
+            this.rdoMp4.Text = "MP4";
+            this.rdoMp4.UseVisualStyleBackColor = true;
+            this.rdoMp4.CheckedChanged += new System.EventHandler(this.rdoMp4_CheckedChanged);
             // 
             // rdoPng
             // 
@@ -739,6 +904,7 @@ namespace Civitai_Love
             this.rdoPng.TabIndex = 1;
             this.rdoPng.Text = "PNG";
             this.rdoPng.UseVisualStyleBackColor = true;
+            this.rdoPng.CheckedChanged += new System.EventHandler(this.rdoPng_CheckedChanged);
             // 
             // rdoJpg
             // 
@@ -751,13 +917,14 @@ namespace Civitai_Love
             this.rdoJpg.TabStop = true;
             this.rdoJpg.Text = "JPG";
             this.rdoJpg.UseVisualStyleBackColor = true;
+            this.rdoJpg.Validated += new System.EventHandler(this.rdoJpg_Validated);
             // 
             // lblSystemInfo
             // 
             this.lblSystemInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSystemInfo.Font = new System.Drawing.Font("Segoe UI", 6F);
             this.lblSystemInfo.ImageAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblSystemInfo.Location = new System.Drawing.Point(617, 520);
+            this.lblSystemInfo.Location = new System.Drawing.Point(626, 610);
             this.lblSystemInfo.Name = "lblSystemInfo";
             this.lblSystemInfo.Size = new System.Drawing.Size(352, 15);
             this.lblSystemInfo.TabIndex = 34;
@@ -813,7 +980,7 @@ namespace Civitai_Love
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 603);
+            this.ClientSize = new System.Drawing.Size(1006, 693);
             this.Controls.Add(this.lblShowInfo3);
             this.Controls.Add(this.pnlEditVideo);
             this.Controls.Add(this.pnlSystemSeting);
@@ -837,7 +1004,13 @@ namespace Civitai_Love
             this.menuStrip1.PerformLayout();
             this.pnlSystemSeting.ResumeLayout(false);
             this.pnlSystemSeting.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.pnlEditVideo.ResumeLayout(false);
+            this.groupBoxMP4.ResumeLayout(false);
+            this.groupBoxMP4.PerformLayout();
             this.pnlsplitContainer1.Panel1.ResumeLayout(false);
             this.pnlsplitContainer1.Panel1.PerformLayout();
             this.pnlsplitContainer1.Panel2.ResumeLayout(false);
@@ -919,6 +1092,19 @@ namespace Civitai_Love
         private System.Windows.Forms.Label lblSystemInfo;
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.SplitContainer pnlsplitContainer1;
+        private System.Windows.Forms.Button btnV2V_FFMPEG;
+        private System.Windows.Forms.RadioButton rdoMp4;
+        private System.Windows.Forms.Label lblV2V;
+        private System.Windows.Forms.GroupBox groupBoxMP4;
+        private System.Windows.Forms.Label lblOutputMp4Files;
+        private System.Windows.Forms.Button btnV2TXT;
+        private System.Windows.Forms.CheckBox chkDontUseV2V;
+        private System.Windows.Forms.CheckBox chkDontUseV2FI;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox txtSystemOutputV2V;
+        private System.Windows.Forms.Label lblSystemOutputV2V;
+        private System.Windows.Forms.Button btnSystemOutputV2V;
     }
 }
 
