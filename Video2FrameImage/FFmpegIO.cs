@@ -72,6 +72,7 @@ namespace Civitai_Love
                     Arguments = $"-v quiet -print_format json -show_format -show_streams \"{videoPath}\"",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
+                    StandardOutputEncoding = System.Text.Encoding.UTF8,
                     UseShellExecute = false,
                     CreateNoWindow = true
                 };
@@ -86,6 +87,30 @@ namespace Civitai_Love
             {
                 MessageBox.Show(err.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            // エラー対処
+            try
+            {
+                JsonDocument jd = JsonDocument.Parse(output);
+            }
+            catch
+            {
+                try
+                {
+                    string cleanJson = output.Replace("\r", "\\r").Replace("\n", "\\n");
+                    JsonDocument doc = JsonDocument.Parse(cleanJson);
+                    output = cleanJson;
+
+                }
+                catch
+                {
+                    string cleanJson = output.Replace("\r", "");
+                    JsonDocument doc = JsonDocument.Parse(cleanJson);
+                    output = cleanJson;
+                }
+
+            }
+
             return JsonDocument.Parse(output);
             
 
