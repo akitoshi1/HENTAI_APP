@@ -385,21 +385,33 @@ namespace Civitai_Love
                 // 回転設定があるなら修正
                 if (transpose != string.Empty)
                 {
+                    //arguments =
+                    //$"-i \"{inputPath}\" " +
+                    //$"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',\"transpose={transpose}\",setpts=N/{fps}/TB\" " +
+                    //$"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
+                    //$"-an " +
+                    //$"\"{outputPattern}\"";
                     arguments =
                     $"-i \"{inputPath}\" " +
                     $"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',\"transpose={transpose}\",setpts=N/{fps}/TB\" " +
-                    $"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
-                    $"-an " +
+                    $"-af \"atrim=start={startSec}:end={endSec},asetpts=PTS-STARTPTS\" " +
                     $"\"{outputPattern}\"";
+
                 }
                 else
                 {
+                    //arguments =
+                    //$"-i \"{inputPath}\" " +
+                    //$"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',setpts=N/{fps}/TB\" " +
+                    //$"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
+                    //$"-an " +
+                    //$"\"{outputPattern}\"";
                     arguments =
                     $"-i \"{inputPath}\" " +
                     $"-vf \"select='between(n\\,{startFrame}\\,{endFrame})',setpts=N/{fps}/TB\" " +
-                    $"-af \"aselect='between(n\\,{startFrame}\\,{endFrame})',asetpts=N/SR/TB\" " +
-                    $"-an " +
+                    $"-af \"atrim=start={startSec}:end={endSec},asetpts=PTS-STARTPTS\" " +
                     $"\"{outputPattern}\"";
+
                 }
 
 
